@@ -16,7 +16,7 @@ function EmployeeProfile() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/getById?id=${id}`)
+      .get(`https://employee-crud-django-aeb8.onrender.com/api/getById?id=${id}`)
       .then((response) => setEmployee(response.data))
       .catch((error) => alert(error.message || "Something went wrong"));
   }, []);
@@ -30,7 +30,7 @@ function EmployeeProfile() {
     e.preventDefault();
 
     axios
-      .put("http://localhost:8080/update", {
+      .put("https://employee-crud-django-aeb8.onrender.com/api/update", {
         id: id,
         name: employee.name,
         email: employee.email,

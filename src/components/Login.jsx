@@ -1,7 +1,7 @@
 
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   const [loginForm, setLoginForm] = useState({
@@ -26,7 +26,7 @@ function Login() {
     }
 
     try {
-      const response = await axios.post("http://localhost:8080/login", {
+      const response = await axios.post("https://employee-crud-django-aeb8.onrender.com/api/login", {
         email: loginForm.email,
         password: loginForm.password,
       });
@@ -116,9 +116,9 @@ function Login() {
 
         <p className="text-center text-gray-500 text-sm mt-6">
           Don’t have an account?{" "}
-          <a href="/register" className="text-blue-600 hover:underline">
+          <Link to={'/register'} className="text-blue-600 hover:underline">
             Sign up
-          </a>
+          </Link>
         </p>
       </div>
     </div>

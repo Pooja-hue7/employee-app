@@ -18,7 +18,7 @@ function Register() {
     e.preventDefault();
 
     axios
-      .post("http://localhost:8080/register", {
+      .post("https://employee-crud-django-aeb8.onrender.com/api/register", {
         name: employee.name,
         email: employee.email,
         password: employee.password,

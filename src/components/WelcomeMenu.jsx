@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function WelcomeMenu() {
   return (
@@ -12,8 +13,8 @@ function WelcomeMenu() {
 
    
     <div class="space-x-4">
-      <a href="/login" class="text-gray-600 hover:text-gray-900">Login</a>
-      <a href="/register" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Register</a>
+      <Link to={'/login'} class="text-gray-600 hover:text-gray-900">Login</Link>
+      <Link to={'/register'} class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Register</Link>
     </div>
   </div>
 </nav>
