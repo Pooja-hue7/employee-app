@@ -17,8 +17,8 @@ function Register() {
   const register = (e) => {
     e.preventDefault();
 
-    axios
-      .post("https://employee-crud-django-aeb8.onrender.com/api/register", {
+    axios.post("https://employee-crud-django-aeb8.onrender.com/api/employee/add/", {
+
         name: employee.name,
         email: employee.email,
         password: employee.password,

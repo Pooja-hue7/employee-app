@@ -16,7 +16,8 @@ function EmployeeProfile() {
 
   useEffect(() => {
     axios
-      .get(`https://employee-crud-django-aeb8.onrender.com/api/getById?id=${id}`)
+     .get(`https://employee-crud-django-aeb8.onrender.com/api/employee/?id=${id}`)
+
       .then((response) => setEmployee(response.data))
       .catch((error) => alert(error.message || "Something went wrong"));
   }, []);
@@ -30,7 +31,8 @@ function EmployeeProfile() {
     e.preventDefault();
 
     axios
-      .put("https://employee-crud-django-aeb8.onrender.com/api/update", {
+      .put("https://employee-crud-django-aeb8.onrender.com/api/employee/update/", {
+
         id: id,
         name: employee.name,
         email: employee.email,

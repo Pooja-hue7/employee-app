@@ -9,7 +9,8 @@ function EmployeeDashboard() {
 
   useEffect(() => {
     axios
-      .get("https://employee-crud-django-aeb8.onrender.com/api/getAll")
+      .get("https://employee-crud-django-aeb8.onrender.com/api/employees/")
+
       .then((response) => setEmployees(response.data))
       .catch(() => console.log("Something went wrong"));
   }, []);
@@ -18,7 +19,8 @@ function EmployeeDashboard() {
     //http://localhost:8080/delete?id=1
 
     axios
-      .delete(`https://employee-crud-django-aeb8.onrender.com/api/delete?id=${id}`)
+      .delete(`https://employee-crud-django-aeb8.onrender.com/api/employee/delete/?id=${id}`)
+
       .then((response) => {
         if (response.data === true) {
           alert("deleted");

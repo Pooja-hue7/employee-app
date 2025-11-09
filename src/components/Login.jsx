@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -19,41 +18,28 @@ function Login() {
   const login = async (e) => {
     e.preventDefault();
 
-    // ✅ Basic frontend validation
     if (!loginForm.email || !loginForm.password) {
       alert("Please fill in both email and password");
       return;
     }
 
+    console.log("Attempting login with:", loginForm);
+
     try {
-      const response = await axios.post("https://employee-crud-django-aeb8.onrender.com/api/login", {
-        email: loginForm.email,
-        password: loginForm.password,
-      });
+      const response = await axios.post(
+        "https://employee-crud-django-aeb8.onrender.com/api/employee/login/",
+        {
+          email: loginForm.email,
+          password: loginForm.password,
+        }
+      );
 
-      console.log("✅ Login response:", response);
-
-      // ✅ Check for success
-      if (response.status === 200 && response.data) {
-        alert("Login successful!");
-        navigate("/dashboard");
-      } else {
-        alert("Invalid credentials");
-      }
+      console.log("✅ Login Success:", response.data);
+      alert("Login Successful!");
+      navigate("/dashboard");
     } catch (error) {
-      // ❌ Catch any errors and show them clearly
-      console.error("❌ Login error:", error.response?.data || error.message);
-
-      if (error.response) {
-        // Server responded but with error (e.g., 401, 400)
-        alert(error.response.data?.message || "Invalid credentials");
-      } else if (error.request) {
-        // No response from server
-        alert("Server not reachable. Check if backend is running.");
-      } else {
-        // Something else went wrong
-        alert("Unexpected error occurred. Please try again.");
-      }
+      console.error("❌ Login failed:", error);
+      alert("Server not reachable. Check if backend is running.");
     }
   };
 
@@ -65,12 +51,8 @@ function Login() {
         </h2>
 
         <form onSubmit={login} className="space-y-5">
-          {/* Email Field */}
           <div>
-            <label
-              htmlFor="email"
-              className="block text-gray-700 font-medium mb-1"
-            >
+            <label htmlFor="email" className="block text-gray-700 font-medium mb-1">
               Email Address
             </label>
             <input
@@ -85,12 +67,8 @@ function Login() {
             />
           </div>
 
-          {/* Password Field */}
           <div>
-            <label
-              htmlFor="password"
-              className="block text-gray-700 font-medium mb-1"
-            >
+            <label htmlFor="password" className="block text-gray-700 font-medium mb-1">
               Password
             </label>
             <input
@@ -105,7 +83,6 @@ function Login() {
             />
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             className="w-full py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all duration-300"
@@ -116,7 +93,7 @@ function Login() {
 
         <p className="text-center text-gray-500 text-sm mt-6">
           Don’t have an account?{" "}
-          <Link to={'/register'} className="text-blue-600 hover:underline">
+          <Link to={"/register"} className="text-blue-600 hover:underline">
             Sign up
           </Link>
         </p>
